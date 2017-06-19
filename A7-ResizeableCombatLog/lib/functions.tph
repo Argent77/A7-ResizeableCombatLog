@@ -1,0 +1,76 @@
+/**
+ * Replaces a complete LUA function in *.menu or *.lua files.
+ * STR_VAR new_block      Replacement text for the matching lua function.
+ * STR_VAR find_block     Start of the lua function to match (e.g. "function myFunctionToReplace(param1)"). 
+ *                        Match includes any whitespace found directly before the search text.
+ * STR_VAR find_bound     Regular expression used to match substructures within lua functions.
+ * RET replaced_ui_block  Returns 1 if the replacement was successful.
+ *
+ * Original author: Galactygon
+ */
+DEFINE_PATCH_FUNCTION REPLACE_UI_BLOCK
+	STR_VAR
+    new_block   = ""
+		find_block  = ""
+		find_bound  = "\([^a-z0-9]if[^a-z0-9].*[^a-z0-9]then\|[^a-z0-9]for[^a-z0-9].*[^a-z0-9]do\|[^a-z0-9]end[^a-z0-9]\)"
+	RET
+    replaced_ui_block
+BEGIN
+  // Truncate any blank spaces/lines at the end of input variable
+  INNER_PATCH_SAVE new_block "%new_block%" BEGIN
+    PATCH_IF BUFFER_LENGTH > 0 BEGIN // truncate at end
+      READ_ASCII (BUFFER_LENGTH - 1) last (1)
+      WHILE "%last%" STRING_MATCHES_REGEXP "[ %TAB%%WNL%]" = 0 AND BUFFER_LENGTH > 0 BEGIN
+        DELETE_BYTES (BUFFER_LENGTH - 1) 1
+        READ_ASCII (BUFFER_LENGTH - 1) last (1)
+      END
+    END
+  END
+  PATCH_IF ("%SOURCE_EXT%" STRING_EQUAL_CASE "menu" OR "%SOURCE_EXT%" STRING_EQUAL_CASE "lua") BEGIN // sanity check
+    SET index_begin = INDEX_BUFFER ("[ %TAB%]*%find_block%" 0)
+    PATCH_IF index_begin >= 0 BEGIN // If found a result
+      SET index_end = index_begin
+      SET index_depth = 1 // Set depth to 1
+      WHILE index_depth > 0 AND index_end >= 0 BEGIN // while depth does not return to 0 and not eof
+        SET index_end = INDEX_BUFFER ("%find_bound%" (index_end + 1))
+        READ_ASCII index_end index_match (4)
+        PATCH_IF "%index_match%" STRING_CONTAINS_REGEXP "\(if\|for\)" = 0 BEGIN // if beginning of something i.e. if/for loop
+          SET index_depth += 1 // increment depth by 1
+        END ELSE
+        PATCH_IF "%index_match%" STRING_CONTAINS_REGEXP "end" = 0 BEGIN // if end of something
+          SET index_depth -= 1 // decrement depth by 1
+        END
+      END
+      // If block can be properly read
+      PATCH_IF index_depth = 0 AND index_begin < index_end BEGIN
+        SET index_end += 4 // include the " end" string that completes the block
+        SET read_length = index_end - index_begin
+        SET write_length = STRING_LENGTH "%new_block%"
+        PATCH_IF (write_length > read_length) BEGIN
+          INSERT_BYTES index_begin (write_length - read_length)
+        END ELSE
+        PATCH_IF (write_length < read_length) BEGIN
+          DELETE_BYTES index_begin (read_length - write_length)
+        END
+        WRITE_ASCIIE index_begin "%new_block%" (write_length)
+        SET replaced_ui_block = 1
+      END
+    END
+  END
+END
+
+/*
+// Example usage:
+<<<<<<<< .../%MOD_FOLDER%-Inlined/MyFunction.txt
+function MyFunction()
+	do stuff here
+end
+>>>>>>>>
+COPY - ".../%MOD_FOLDER%-Inlined/MyFunction.txt" ""
+  READ_ASCII 0 my_block (BUFFER_LENGTH)
+
+// Replace "function updateAttrTable()" in UI.menu with inlined function
+COPY_EXISTING "UI.menu" "override"
+  LPF REPLACE_UI_BLOCK STR_VAR new_block = EVAL "%my_block%" find_block = "function updateAttrTable()" END
+BUT_ONLY
+*/

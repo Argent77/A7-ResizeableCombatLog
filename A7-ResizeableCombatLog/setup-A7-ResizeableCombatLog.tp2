@@ -1,0 +1,112 @@
+BACKUP ~A7-ResizeableCombatLog/backup~
+AUTHOR ~Argent77 at Beamdog Forums~
+VERSION ~1.0~
+
+README ~A7-ResizeableCombatLog/readme/readme-%LANGUAGE%.txt~
+       ~A7-ResizeableCombatLog/readme/readme.txt~
+
+LANGUAGE ~English~
+         ~english~
+         ~A7-ResizeableCombatLog/language/english/setup.tra~
+
+
+BEGIN @1  // Freely resizeable combat log
+  REQUIRE_PREDICATE (GAME_IS ~pstee~) @100  // PST:EE required.
+  DESIGNATED 0
+
+  // installing resize handle graphics
+  COPY ~%MOD_FOLDER%/graphics/a7rsedge.mos~ ~override~
+    LPF UPDATE_PVRZ_INDICES RET original_base_index new_base_index END
+
+  ACTION_IF (original_base_index >= 0 && new_base_index >= 0) BEGIN
+    LAF INSTALL_PVRZ
+    INT_VAR
+      original_base_index = original_base_index
+      new_base_index      = new_base_index
+    STR_VAR
+      source_file         = EVAL ~%MOD_FOLDER%/graphics/mos%original_base_index%.pvrz~
+    END
+  END
+
+  INCLUDE ~%MOD_FOLDER%/lib/functions.tph~
+
+
+  // adding code for freely resizeable combat log
+<<<<<<<< .../inlined/func01.txt
+	function restoreCombatLogMoveHandle(logWidth)
+		local mx, _, mw, _ = Infinity_GetArea("combatLogMoveHandle")
+		Infinity_SetArea("combatLogMoveHandle", (logWidth - mw) / 2, nil, nil, nil)
+	end
+	function restoreCombatLogPosition()
+		local x = Infinity_GetINIValue("Game Options", "CombatX")
+		local y = Infinity_GetINIValue("Game Options", "CombatY")
+		local w = Infinity_GetINIValue("Game Options", "CombatW")
+		local h = Infinity_GetINIValue("Game Options", "CombatH")
+		local sw, sh = Infinity_GetScreenSize()
+		x = clamp(x, -(sw - 588), 0)
+		y = clamp(y, 0, sh - 94)
+		w = clamp(w, 71, sw - 4)
+		h = clamp(h, 94, sh - 96)
+
+		Infinity_SetArea("WORLD_COMBATLOG", x, y, w, h)
+		Infinity_SetArea("worldCombatLog", nil, nil, w, h - 18)
+		Infinity_SetArea("combatLogResizeHandle", -5, h - 28, nil, nil)
+		Infinity_SetArea("combatLogRect", nil, nil, w, h)
+		restoreCombatLogMoveHandle(w)
+	end
+>>>>>>>>
+  COPY - ~.../inlined/func01.txt~ ~~
+    READ_ASCII 0 func01 (SOURCE_SIZE)
+
+<<<<<<<< .../inlined/func02.txt
+	function saveCombatLogPosition()
+		local x, y, w, h = Infinity_GetArea("WORLD_COMBATLOG")
+		Infinity_SetINIValue("Game Options", "CombatX", x)
+		Infinity_SetINIValue("Game Options", "CombatY", y)
+		Infinity_SetINIValue("Game Options", "CombatW", w)
+		Infinity_SetINIValue("Game Options", "CombatH", h)
+	end
+>>>>>>>>
+  COPY - ~.../inlined/func02.txt~ ~~
+    READ_ASCII 0 func02 (SOURCE_SIZE)
+
+<<<<<<<< .../inlined/func03.txt
+	function resizeCombatLog(dx, dy)
+		local _, _, w, h = Infinity_GetArea("WORLD_COMBATLOG")
+		local sw, sh = Infinity_GetScreenSize()
+
+		if ((dx > w - 73) or (w + dx < 73 and dx > 0)) then
+			dx = 0
+		end
+
+		if (h + dy < 73) then
+			dy = 0
+		end
+		if (h + dy > sh - 96) then
+			dy = 0
+		end
+
+		adjustItemGroup({"combatLogResizeHandle"}, 0, dy, 0, 0)
+		adjustItemGroup({"worldCombatLog", "combatLogRect", "WORLD_COMBATLOG"}, 0, 0, -dx, dy)
+		restoreCombatLogMoveHandle(w - dx)
+	end
+>>>>>>>>
+  COPY - ~.../inlined/func03.txt~ ~~
+    READ_ASCII 0 func03 (SOURCE_SIZE)
+
+  COPY_EXISTING ~UI.menu~ ~override~
+    // updating lua functions
+    LPF REPLACE_UI_BLOCK STR_VAR new_block = EVAL "%func01%" find_block = "function restoreCombatLogPosition()" END
+    LPF REPLACE_UI_BLOCK STR_VAR new_block = EVAL "%func02%" find_block = "function saveCombatLogPosition()" END
+    LPF REPLACE_UI_BLOCK STR_VAR new_block = EVAL "%func03%" find_block = "function resizeCombatLog(dx, dy)" END
+
+    // updating ui definitions
+    REPLACE_TEXTUALLY
+      ~\([ %TAB%]*area.+[%WNL%]+[ %TAB%]*mosaic[ %TAB%]+"MOVETAB"\)~
+      ~    name "combatLogMoveHandle"%WNL%\1~
+
+    REPLACE_TEXTUALLY
+      ~[ %TAB%]*\(name[ %TAB%]+"combatLogResizeHandle"\)[%WNL%]+[ %TAB%]*area.+[%WNL%]+[ %TAB%]*mosaic.+~
+      ~    \1
+    area -5 71 36 36
+    mosaic "A7RSEDGE"~

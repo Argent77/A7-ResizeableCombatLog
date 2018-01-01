@@ -31,6 +31,8 @@ Graphics, coding and testing: Argent77
 
 Additional code: Galactygon
 
+Italian translation: Aedan
+
 
 Copyright Notice
 ~~~~~~~~~~~~~~~~

@@ -9,6 +9,10 @@ LANGUAGE ~English~
          ~english~
          ~A7-ResizeableCombatLog/language/english/setup.tra~
 
+LANGUAGE ~Italian (by Aedan)~
+         ~italian~
+         ~A7-ResizeableCombatLog/language/italian/setup.tra~
+
 
 BEGIN @1  // Freely resizeable combat log
   REQUIRE_PREDICATE (GAME_IS ~pstee~) @100  // PST:EE required.

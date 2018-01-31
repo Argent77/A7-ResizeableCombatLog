@@ -1,7 +1,7 @@
 Freely resizeable combat log for PST:EE
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Version:    1.0
+Version:    1.1
 Author:     Argent77
 
 Download:   https://github.com/Argent77/A7-ResizeableCombatLog/releases/latest
@@ -43,6 +43,9 @@ International License" (http://creativecommons.org/licenses/by-sa/4.0/).
 
 History
 ~~~~~~~
+
+1.1
+- Added Italian translation (thanks Aedan)
 
 1.0
 - Traified setup messages

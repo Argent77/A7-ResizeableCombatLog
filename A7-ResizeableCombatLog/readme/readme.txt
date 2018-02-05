@@ -32,6 +32,7 @@ Graphics, coding and testing: Argent77
 Additional code: Galactygon
 
 Italian translation: Aedan
+Polish translation: memory (Stars of Mystra translation group)
 
 
 Copyright Notice
@@ -43,6 +44,9 @@ International License" (http://creativecommons.org/licenses/by-sa/4.0/).
 
 History
 ~~~~~~~
+
+1.2
+- Added Polish translation (thanks memory)
 
 1.1
 - Added Italian translation (thanks Aedan)

@@ -8,20 +8,18 @@ Download:   https://github.com/Argent77/A7-ResizeableCombatLog/releases/latest
 Discussion: https://forums.beamdog.com/discussion/64257/mod-freely-resizeable-combat-log
 
 
-Overview
-~~~~~~~~
+Opis
+~~~~
 
-A mod for Planescape Torment: Enhanced Edition.
+Jest to modyfikacja do gry Planescape Torment: Enhanced Edition.
 
-PST:EE features a combat log window that can be freely moved around, but only resized in vertical direction.
-This mod changes the controls of the combat log, so that it can be freely resized in both directions.
+Okno dziennika bitewnego w PST:EE można przemieszczać w dowolny sposób po ekranie gry, ale zmiana jego rozmiaru jest możliwa tylko w pionie. Ta modyfikacja zmienia skrypty kontrolujące dziennik tak, aby było możliwe zmienianie jego rozmiaru w obydwu kierunkach.
 
 
-Installation
-~~~~~~~~~~~~
+Instalacja
+~~~~~~~~~~
 
-This is a WeiDU mod, that means it is very easy to install. Simply unpack the downloaded archive 
-into your game directory and run "setup-ResizeableCombatLog.exe".
+Jest to modyfikacja WeiDU, co oznacza, iż jest bardzo prosta w instalacji. Wystarczy rozpakować pobrane archiwum do katalogu z grą, a następnie uruchomić plik "setup-ResizeableCombatLog.exe".
 
 
 Credits

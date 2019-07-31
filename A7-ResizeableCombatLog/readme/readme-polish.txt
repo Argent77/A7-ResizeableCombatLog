@@ -5,7 +5,9 @@ Version:    1.2
 Author:     Argent77
 
 Download:   https://github.com/Argent77/A7-ResizeableCombatLog/releases/latest
+            http://www.shsforums.net/files/file/1221-freely-resizeable-combat-log-for-pstee/
 Discussion: https://forums.beamdog.com/discussion/64257/mod-freely-resizeable-combat-log
+            http://www.shsforums.net/topic/60060-freely-resizeable-combat-log-pstee/
 
 
 Opis

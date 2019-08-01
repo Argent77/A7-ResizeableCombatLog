@@ -11,11 +11,18 @@ LANGUAGE ~English~
 
 LANGUAGE ~Italian (by Aedan)~
          ~italian~
+         ~A7-ResizeableCombatLog/language/english/setup.tra~
          ~A7-ResizeableCombatLog/language/italian/setup.tra~
 
 LANGUAGE ~Polish (by memory)~
          ~polish~
+         ~A7-ResizeableCombatLog/language/english/setup.tra~
          ~A7-ResizeableCombatLog/language/polish/setup.tra~
+
+LANGUAGE ~German~
+         ~german~
+         ~A7-ResizeableCombatLog/language/english/setup.tra~
+         ~A7-ResizeableCombatLog/language/german/setup.tra~
 
 
 BEGIN @1  // Freely resizeable combat log

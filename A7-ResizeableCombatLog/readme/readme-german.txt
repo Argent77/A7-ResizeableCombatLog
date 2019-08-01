@@ -1,29 +1,30 @@
-Freely resizeable combat log for PST:EE
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Frei skalierbares Kampflogbuch für  PST:EE
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Version:    1.2
-Author:     Argent77
+Autor:      Argent77
 
 Download:   https://github.com/Argent77/A7-ResizeableCombatLog/releases/latest
             http://www.shsforums.net/files/file/1221-freely-resizeable-combat-log-for-pstee/
-Discussion: https://forums.beamdog.com/discussion/64257/mod-freely-resizeable-combat-log
+Diskussion: https://forums.beamdog.com/discussion/64257/mod-freely-resizeable-combat-log
             http://www.shsforums.net/topic/60060-freely-resizeable-combat-log-pstee/
 
 
-Overview
+Übersicht
 ~~~~~~~~
 
-A mod for Planescape Torment: Enhanced Edition.
+Eine Mod für Planescape Torment: Enhanced Edition.
 
-PST:EE features a combat log window that can be freely moved around, but only resized in vertical direction.
-This mod changes the controls of the combat log, so that it can be freely resized in both directions.
+PST:EE verfügt über ein Kampflogbuch, welches man frei bewegen, aber nur in vertikaler Richtung skalieren kann.
+Diese Mod ändert dieses Verhalten, sodass das Fenster in beide Richtungen frei skaliert werden kann.
 
 
 Installation
 ~~~~~~~~~~~~
 
-This is a WeiDU mod, that means it is very easy to install. Simply unpack the downloaded archive 
-into your game directory and run "setup-ResizeableCombatLog.exe".
+Dies ist eine WeiDU Mod. Das bedeutet, sie ist sehr einfach zu installieren. Entpackt die heruntergeladene
+Zipdatei in das Spieleverzeichnis und startet entweder „setup-ResizeableCombatLog.exe” (Windows) oder
+„setup-ResizeableCombatLog.command” (macOS). Folgt den Anweisungen des Programms und die Mod ist startbereit.
 
 
 Credits

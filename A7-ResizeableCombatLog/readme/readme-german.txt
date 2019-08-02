@@ -1,7 +1,7 @@
 Frei skalierbares Kampflogbuch für  PST:EE
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Version:    1.2
+Version:    1.3
 Autor:      Argent77
 
 Download:   https://github.com/Argent77/A7-ResizeableCombatLog/releases/latest

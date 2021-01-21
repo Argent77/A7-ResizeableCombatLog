@@ -1,6 +1,13 @@
-BACKUP ~A7-ResizeableCombatLog/backup~
+BACKUP ~weidu_external/backup/A7-ResizeableCombatLog~
 SUPPORT ~https://forums.beamdog.com/discussion/64257~
 VERSION ~1.3~
+
+ALWAYS
+  // required because of non-standard BACKUP path
+  OUTER_TEXT_SPRINT MOD_FOLDER ~A7-ResizeableCombatLog~
+  // root folder for mutable data
+  OUTER_TEXT_SPRINT WORK_FOLDER ~weidu_external~
+END
 
 README ~A7-ResizeableCombatLog/readme/readme-%LANGUAGE%.txt~
        ~A7-ResizeableCombatLog/readme/readme.txt~

@@ -1,7 +1,7 @@
 Frei skalierbares Kampflogbuch für  PST:EE
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Version:    1.3
+Version:    1.4
 Autor:      Argent77
 
 Download:   https://github.com/Argent77/A7-ResizeableCombatLog/releases/latest
@@ -34,6 +34,8 @@ Graphics, coding and testing: Argent77
 
 Additional code: Galactygon
 
+French translation: Jazira
+
 Italian translation: Aedan
 
 Polish translation: memory (Stars of Mystra)
@@ -50,7 +52,8 @@ History
 ~~~~~~~
 
 1.4
-- Added French translation (thanks jazira)
+- Added French translation (thanks Jazira)
+- Added Project Infinity support
 
 1.3
 - Added German readme and translation

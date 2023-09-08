@@ -40,6 +40,7 @@ LANGUAGE ~French (by jazira)~
 BEGIN @1  // Freely resizeable combat log
   REQUIRE_PREDICATE (GAME_IS ~pstee~) @100  // PST:EE required.
   DESIGNATED 0
+  LABEL ~A7-RESIZEABLECOMBATLOG-MAIN~
 
   // installing resize handle graphics
   COPY ~%MOD_FOLDER%/graphics/a7rsedge.mos~ ~override~
